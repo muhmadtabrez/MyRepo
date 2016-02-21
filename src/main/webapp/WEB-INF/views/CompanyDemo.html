@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app = "myAapp">
+<!--  <reference path= "angular.min.js"/> -->
+<head>
+<meta charset="ISO-8859-1">
+<title>CompanyClient</title>
+<script type="text/javascript" src="angular.min.js"></script>
+
+</head>
+<body ng-controller = "companyController">
+
+<table cellpading="2" cellspacing="2" border="1">
+<tr>
+     <th>CompanyId</th>
+     <th>Name</th>
+     <th>Address</th>
+     <th>City</th>
+     <th>Country</th>    
+</tr>  
+<tr ng-repeat= "company in result">
+
+    <td>{{company.companyId}}</td>
+    <td>{{company.name}}</td>
+    <td>{{company.address}}</td>
+    <td>{{company.city}}</td>
+    <td>{{company.country}}</td>
+    
+</tr>
+
+</table>
+<script type = "text/javascript">
+var myApp [] = angular.module('myApp', []);
+myApp.controller('companyController',function($scope,$http){
+	
+	&http.get('http://localhost:8080/RestControllerFramework/service')
+	.success( function(response){
+		$scope.result = response.companies;
+	});
+	});
+}
+</script>
+</body>
+</html>
